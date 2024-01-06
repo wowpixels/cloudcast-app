@@ -70,7 +70,7 @@ const InformationPanel = ({ city, lat, long, results }: Props) => {
 
       <div className="mt-8">
         <div className="flex flex-col w-full items-center justify-between space-y-2">
-          <div className="flex w-full items-center px-4 space-x-2 py-3 border border-blue-400 rounded-md bg-white/10">
+          <div className="flex w-full items-center px-4 space-x-2 py-3 border border-indigo-400 rounded-md bg-white/10">
             <SunIcon className="h-5 w-5 text-yellow-200" />
             <div className="flex w-full justify-between">
               <p className="font-light">Sunrise</p>
@@ -86,7 +86,7 @@ const InformationPanel = ({ city, lat, long, results }: Props) => {
               </p>
             </div>
           </div>
-          <div className="flex w-full items-center px-4 space-x-2  py-3 border border-blue-400 rounded-md bg-white/10">
+          <div className="flex w-full items-center px-4 space-x-2  py-3 border border-indigo-400 rounded-md bg-white/10">
             <MoonIcon className="h-5 w-5 text-white" />
             <div className="flex w-full justify-between">
               <p className="font-light">Sunset</p>

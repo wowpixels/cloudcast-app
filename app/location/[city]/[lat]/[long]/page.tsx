@@ -1,8 +1,15 @@
 import { getClient } from '@/apollo-client';
 import CalloutCard from '@/components/CalloutCard';
+import HumidityChart from '@/components/HumidityChart';
 import InformationPanel from '@/components/InformationPanel';
+import RainChart from '@/components/RainChart';
 import StatCard from '@/components/StatCard';
+import TempChart from '@/components/TempChart';
 import fetchWeatherQuery from '@/graphql/queries/fetchWeatherQueries';
+import cleanData from '@/lib/cleanData';
+import getBasePath from '@/lib/getBasePath';
+
+export const revalidate = 60;
 
 type Props = {
   params: {
@@ -27,6 +34,21 @@ const WeatherPage = async ({ params: { city, lat, long } }: Props) => {
 
   const results: Root = data.myQuery;
 
+  const dataToSend = cleanData(results, city);
+
+  const res = await fetch(`${getBasePath()}/api/getWeatherSummary`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      weatherData: dataToSend,
+    }),
+  });
+
+  const GPTdata = await res.json();
+  const { content } = GPTdata;
+
   return (
     <div className="flex flex-col min-h-screen md:flex-row">
       <InformationPanel city={city} lat={lat} long={long} results={results} />
@@ -41,7 +63,7 @@ const WeatherPage = async ({ params: { city, lat, long } }: Props) => {
             </p>
           </div>
           <div className="mb-10">
-            <CalloutCard message="This is where GPT-4 Summary will go" />
+            <CalloutCard message={content} />
           </div>
 
           <div className="grid grid-cols-1 gap-5 xl:grid-cols-2">
@@ -86,9 +108,9 @@ const WeatherPage = async ({ params: { city, lat, long } }: Props) => {
 
         <hr className="mb-5" />
         <div className="space-y-3">
-          {/* Chart */}
-          {/* Chart */}
-          {/* Chart */}
+          <TempChart results={results} />
+          <RainChart results={results} />
+          <HumidityChart results={results} />
         </div>
       </div>
     </div>

@@ -6,19 +6,16 @@ import { CityPicker } from '@/components/CityPicker';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gradient-custom p-10 flex flex-col justify-center items-center">
-      <Card className="max-w-3xl mx-auto">
-        <Text className="text-4xl font-bold text-center mb-10">
+    <main className="min-h-screen bg-slate-200 p-10 flex flex-col justify-center items-center">
+      <Card className="max-w-3xl p-12 mx-auto bg-gradient-custom">
+        <Text className="text-5xl font-bold text-center mb-0 text-white">
           CloudCast AI
         </Text>
-        <Subtitle className="text-xl text-center">
+        <Subtitle className="text-base text-center text-white/60">
           Powered by OpenAI, Next.js, Tailwind CSS, Tremor 2.0 + more!
         </Subtitle>
         <Divider className="my-10" />
-
-        <Card className="bg-gradient-custom">
-          <CityPicker />
-        </Card>
+        <CityPicker />
       </Card>
     </main>
   );
