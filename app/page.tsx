@@ -6,7 +6,7 @@ import { CityPicker } from '@/components/CityPicker';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-sky-500 to-blue-500 p-10 flex flex-col justify-center items-center">
+    <main className="min-h-screen bg-gradient-custom p-10 flex flex-col justify-center items-center">
       <Card className="max-w-3xl mx-auto">
         <Text className="text-4xl font-bold text-center mb-10">
           CloudCast AI
@@ -16,7 +16,7 @@ export default function Home() {
         </Subtitle>
         <Divider className="my-10" />
 
-        <Card className="bg-gradient-to-br from-sky-500 to-blue-500">
+        <Card className="bg-gradient-custom">
           <CityPicker />
         </Card>
       </Card>
