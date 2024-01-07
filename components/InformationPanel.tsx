@@ -1,8 +1,8 @@
 import { MoonIcon, SunIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
 import { CityPicker } from './CityPicker';
-import { City } from 'country-state-city';
 import weatherCodeToString from '@/lib/weatherCodeToString';
+import { Subtitle } from '@tremor/react';
 
 type Props = {
   city: string;
@@ -14,16 +14,23 @@ type Props = {
 const InformationPanel = ({ city, lat, long, results }: Props) => {
   return (
     <div className="bg-gradient-custom p-10 text-white">
+      <h1 className="text-3xl font-bold mb-0 text-gradient-custom">
+        CloudCast
+      </h1>
+      <Subtitle className="!text-sm !text-slate-500 md:text-lg">
+        Your AI powered weather forecast
+      </Subtitle>
+      <hr className="mt-10 mb-9 border-slate-500" />
       <div className="pb-5">
-        <h1 className="text-4xl font-bold">{decodeURI(city)}</h1>
-        <p className="text-xs mt-1 text-sky-200">
+        <h1 className="text-3xl font-bold text-slate-100">{decodeURI(city)}</h1>
+        <p className="text-xs text-slate-400">
           Long/Lat: {long}, {lat}
         </p>
       </div>
 
       <CityPicker />
 
-      <hr className="my-10" />
+      <hr className="my-10 border-slate-500" />
       <div className="mt-5 flex items-center justify-between space-x-10 mb-5">
         <div>
           <p className="text-xl font-bold">
@@ -34,7 +41,7 @@ const InformationPanel = ({ city, lat, long, results }: Props) => {
               day: 'numeric',
             })}
           </p>
-          <p className="font-extralight text-sm">
+          <p className="font-extralight text-sm text-slate-400">
             Timezone: {Intl.DateTimeFormat().resolvedOptions().timeZone}
           </p>
         </div>
@@ -46,7 +53,7 @@ const InformationPanel = ({ city, lat, long, results }: Props) => {
           })}
         </p>
       </div>
-      <hr className="mt-10 mb-5" />
+      <hr className="mt-10 mb-5 border-slate-500" />
       <div>
         <div>
           <Image

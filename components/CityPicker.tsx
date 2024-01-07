@@ -53,7 +53,7 @@ export const CityPicker = () => {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="w-full space-y-4">
       <div className="space-y-2">
         <div className="flex items-center gap-2 text-white">
           <GlobeIcon className="h-5 w-5 text-white" />
@@ -81,8 +81,8 @@ export const CityPicker = () => {
               selectedCountry.value.isoCode
             )?.map((city) => ({
               value: {
-                latitude: city.latitude,
-                longitude: city.longitude,
+                latitude: city.latitude || '',
+                longitude: city.longitude || '',
                 countryCode: city.countryCode,
                 name: city.name,
                 stateCode: city.stateCode,
