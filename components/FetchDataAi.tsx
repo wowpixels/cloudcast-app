@@ -1,7 +1,8 @@
 'use client';
 import CalloutCard from './CalloutCard';
 import getBasePath from '@/lib/getBasePath';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useCompletion } from 'ai/react';
 
 type Props = {
   dataToSend: {
@@ -10,33 +11,35 @@ type Props = {
 };
 
 const FetchDataAi = (dataToSend: Props) => {
-  const [openAiSummary, setOpenAiSummary] = useState(
-    'Loading... Maya is collecting data from OpenAI.'
-  );
+  const { complete, completion, isLoading, error } = useCompletion({
+    api: `${getBasePath()}/api/completion`,
+  });
+
+  const prompt = JSON.stringify({
+    weatherData: dataToSend,
+  });
 
   useEffect(() => {
-    const url = `${getBasePath()}/api/getWeatherSummary`;
-    const fetchData = async () => {
-      try {
-        const response = await fetch(url, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            weatherData: dataToSend,
-          }),
-        });
-        const json = await response.json();
-        setOpenAiSummary(json.content);
-      } catch (error) {
-        console.log('error', error);
-      }
-    };
-    fetchData();
-  }, [dataToSend]);
+    complete(prompt);
+  }, [complete, prompt]);
 
-  return <CalloutCard message={openAiSummary} />;
+  return (
+    <div>
+      {isLoading && (
+        <CalloutCard
+          loading
+          message="Loading... Maya is collecting data from OpenAI."
+        />
+      )}
+      {completion && !isLoading ? <CalloutCard message={completion} /> : ''}
+      {error && (
+        <CalloutCard
+          notify
+          message="Hi this is Maya, your AI weather assistant. I have run out of credits at OpenAI and can not use the OpenAI data to provide you with a summary. The data on this page is still accurate. I will be back soon."
+        />
+      )}
+    </div>
+  );
 };
 
 export default FetchDataAi;

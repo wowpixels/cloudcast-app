@@ -57,13 +57,19 @@ export const CityPicker = () => {
       <div className="space-y-2">
         <div className="flex items-center gap-2 text-white">
           <GlobeIcon className="h-5 w-5 text-white" />
-          <label htmlFor="country">Country</label>
+          <label id="country" htmlFor="country">
+            Country
+          </label>
         </div>
         <Select
+          id="country"
           className="text-black"
           value={selectedCountry}
+          instanceId="country"
           onChange={handleSelectedCountry}
           options={options}
+          aria-label="Select your Country"
+          placeholder="Select your Country"
         />
       </div>
       {/* Show city picker if a country is selected */}
@@ -71,12 +77,18 @@ export const CityPicker = () => {
         <div className="space-y-2">
           <div className="flex items-center gap-2 mb-2 text-white">
             <GlobeIcon className="h-5 w-5 text-white" />
-            <label htmlFor="country">City</label>
+            <label id="city" htmlFor="city">
+              City
+            </label>
           </div>
           <Select
+            id="city"
             className="text-black"
             value={selectedCity}
+            instanceId="city"
             onChange={handleSelectedCity}
+            aria-label="Select your City"
+            placeholder="Select your City"
             options={City.getCitiesOfCountry(
               selectedCountry.value.isoCode
             )?.map((city) => ({
