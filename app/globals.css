@@ -9,3 +9,7 @@
 .text-gradient-custom {
   @apply bg-gradient-to-r from-indigo-300 via-red-200 to-indigo-300 inline-block text-transparent bg-clip-text;
 }
+
+.text-gradient-custom-gray {
+  @apply bg-gradient-to-b from-slate-100 to-indigo-300 inline-block text-transparent bg-clip-text;
+}

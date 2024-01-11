@@ -14,24 +14,37 @@ type Props = {
 const InformationPanel = ({ city, lat, long, results }: Props) => {
   return (
     <div className="bg-gradient-custom p-10 text-white">
-      <h1 className="text-3xl font-bold mb-0 text-gradient-custom">
-        CloudCast
-      </h1>
-      <Subtitle className="!text-sm !text-slate-500 md:text-lg">
-        Your AI powered weather forecast
-      </Subtitle>
-      <hr className="mt-10 mb-9 border-slate-500" />
-      <div className="pb-5">
-        <h1 className="text-3xl font-bold text-slate-100">{decodeURI(city)}</h1>
+      <div className="flex gap-2 items-center">
+        <Image
+          src="/cloudcast-icon.svg"
+          alt="cloudcast-icon"
+          width={50}
+          height={50}
+        />
+        <div>
+          <h1 className="text-3xl font-bold mb-0 text-gradient-custom">
+            CloudCast
+          </h1>
+          <Subtitle className="!text-sm !text-slate-500 md:text-lg">
+            Your AI powered weather forecast
+          </Subtitle>
+        </div>
+      </div>
+
+      <div className="mt-10 mb-4 px-4 py-3 border border-slate-600 rounded-md bg-gradient-to-tr from-slate-800 to-white/10">
+        <h1 className="text-3xl font-bold text-gradient-custom-gray">
+          {decodeURI(city)}
+        </h1>
         <p className="text-xs text-slate-400">
           Long/Lat: {long}, {lat}
         </p>
       </div>
 
-      <CityPicker />
+      <div className="mb-4 px-4 space-x-2 py-3 border border-slate-600 rounded-md bg-gradient-to-tr from-slate-800 to-white/10">
+        <CityPicker />
+      </div>
 
-      <hr className="my-10 border-slate-500" />
-      <div className="mt-5 flex items-center justify-between space-x-10 mb-5">
+      <div className="flex items-center justify-between space-x-10 mb-4 px-4 space-x-2 py-3 border border-slate-600 rounded-md bg-gradient-to-tr from-slate-800 to-white/10">
         <div>
           <p className="text-xl font-bold">
             {new Date().toLocaleDateString('en-GB', {
@@ -53,8 +66,8 @@ const InformationPanel = ({ city, lat, long, results }: Props) => {
           })}
         </p>
       </div>
-      <hr className="mt-10 mb-5 border-slate-500" />
-      <div>
+
+      <div className="mb-4 px-4 space-x-2 py-3 border border-slate-600 rounded-md  bg-gradient-to-tr from-slate-800 to-white/10">
         <div>
           <Image
             src={`https://www.weatherbit.io/static/img/icons/${
@@ -75,36 +88,31 @@ const InformationPanel = ({ city, lat, long, results }: Props) => {
         </div>
       </div>
 
-      <div className="mt-8">
-        <div className="flex flex-col w-full items-center justify-between space-y-2">
-          <div className="flex w-full items-center px-4 space-x-2 py-3 border border-slate-600 rounded-md bg-white/10">
-            <SunIcon className="h-5 w-5 text-yellow-200" />
-            <div className="flex w-full justify-between">
-              <p className="font-light">Sunrise</p>
-              <p className="font-light">
-                {new Date(results.daily.sunrise[0]).toLocaleTimeString(
-                  'en-GB',
-                  {
-                    hour: 'numeric',
-                    minute: 'numeric',
-                    hour12: false,
-                  }
-                )}
-              </p>
-            </div>
+      <div className="flex flex-col w-full items-center justify-between space-y-4 mb-2">
+        <div className="flex w-full items-center px-4 space-x-2 py-3 border border-slate-600 rounded-md bg-gradient-to-tr from-slate-800 to-white/10">
+          <SunIcon className="h-5 w-5 text-yellow-200" />
+          <div className="flex w-full justify-between">
+            <p className="font-light">Sunrise</p>
+            <p className="font-light">
+              {new Date(results.daily.sunrise[0]).toLocaleTimeString('en-GB', {
+                hour: 'numeric',
+                minute: 'numeric',
+                hour12: false,
+              })}
+            </p>
           </div>
-          <div className="flex w-full items-center px-4 space-x-2  py-3 border border-slate-600 rounded-md bg-white/10">
-            <MoonIcon className="h-5 w-5 text-white" />
-            <div className="flex w-full justify-between">
-              <p className="font-light">Sunset</p>
-              <p className="font-light">
-                {new Date(results.daily.sunset[0]).toLocaleTimeString('en-GB', {
-                  hour: 'numeric',
-                  minute: 'numeric',
-                  hour12: false,
-                })}
-              </p>
-            </div>
+        </div>
+        <div className="flex w-full items-center px-4 space-x-2 py-3 border border-slate-600 rounded-md bg-gradient-to-tr from-slate-800 to-white/10">
+          <MoonIcon className="h-5 w-5 text-white" />
+          <div className="flex w-full justify-between">
+            <p className="font-light">Sunset</p>
+            <p className="font-light">
+              {new Date(results.daily.sunset[0]).toLocaleTimeString('en-GB', {
+                hour: 'numeric',
+                minute: 'numeric',
+                hour12: false,
+              })}
+            </p>
           </div>
         </div>
       </div>
