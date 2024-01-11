@@ -44,7 +44,7 @@ const InformationPanel = ({ city, lat, long, results }: Props) => {
         <CityPicker />
       </div>
 
-      <div className="flex items-center justify-between space-x-10 mb-4 px-4 space-x-2 py-3 border border-slate-600 rounded-md bg-gradient-to-tr from-slate-800 to-white/10">
+      <div className="flex items-center justify-between mb-4 px-4 space-x-2 py-3 border border-slate-600 rounded-md bg-gradient-to-tr from-slate-800 to-white/10">
         <div>
           <p className="text-xl font-bold">
             {new Date().toLocaleDateString('en-GB', {
