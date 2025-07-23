@@ -13,7 +13,6 @@ import { PageProps } from '@/.next/types/app/page';
 
 export const revalidate = 60;
 
-
 type RouteParams = {
   city: string;
   lat: string;
