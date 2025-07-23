@@ -9,18 +9,23 @@ import FetchDataAi from '@/components/FetchDataAi';
 import fetchWeatherQuery from '@/graphql/queries/fetchWeatherQueries';
 import cleanData from '@/lib/cleanData';
 import Footer from '@/components/Footer';
+import { PageProps } from '@/.next/types/app/page';
 
 export const revalidate = 60;
 
-type Props = {
-  params: {
-    city: string;
-    lat: string;
-    long: string;
-  };
+
+type RouteParams = {
+  city: string;
+  lat: string;
+  long: string;
 };
 
-const WeatherPage = async ({ params: { city, lat, long } }: Props) => {
+export default async function WeatherPage({
+  params,
+}: {
+  params: Promise<RouteParams>;
+}) {
+  const { city, lat, long } = await params;
   const client = getClient();
 
   const { data } = await client.query({
@@ -121,4 +126,3 @@ const WeatherPage = async ({ params: { city, lat, long } }: Props) => {
   );
 };
 
-export default WeatherPage;
