@@ -20,8 +20,7 @@ type Props = {
   };
 };
 
-const WeatherPage = async ({ params }: Props) => {
-  const { city, lat, long } = params;
+const WeatherPage = async ({ params: { city, lat, long } }: Props) => {
   const client = getClient();
 
   const { data } = await client.query({
