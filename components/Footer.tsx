@@ -12,7 +12,7 @@ const Footer = () => {
         wowpixels.dev
       </Link>
       <div className="mt-1 text-xs">
-        Powered by OpenAI, Next.js, Tailwind CSS, Tremor 2.0 & Stepzen
+        Powered by OpenAI, Next.js, Tailwind CSS & Tremor 2.0
       </div>
     </footer>
   );
