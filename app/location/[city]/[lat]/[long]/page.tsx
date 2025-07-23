@@ -20,7 +20,8 @@ type Props = {
   };
 };
 
-const WeatherPage = async ({ params: { city, lat, long } }: Props) => {
+const WeatherPage = async ({ params }: Props) => {
+  const { city, lat, long } = params;
   const client = getClient();
 
   const { data } = await client.query({
@@ -32,6 +33,14 @@ const WeatherPage = async ({ params: { city, lat, long } }: Props) => {
       timezone: 'CET',
     },
   });
+
+  if (!data) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-purple-500 text-white">
+        <h1 className="text-3xl font-bold">Weather data not found</h1>
+      </div>
+    );
+  }
 
   const results: Root = data.myQuery;
   const dataToSend = cleanData(results, city);
